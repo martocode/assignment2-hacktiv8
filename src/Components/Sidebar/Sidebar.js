@@ -1,4 +1,5 @@
-import React, { Component, forwardRef } from "react";
+import React, { Component } from "react";
+import { HashLink as Link } from "react-router-hash-link";
 import avatar from "../../icon/user.png";
 
 export default class Sidebar extends Component {
@@ -8,10 +9,10 @@ export default class Sidebar extends Component {
             this.clicker = this.props.clicker
         }
      */
-	scroller = (ref) => ref.current.scrollIntoView({ behavior: "smooth" });
+	// scroller = (ref) => ref.current.scrollIntoView({ behavior: "smooth" });
 
 	render() {
-		const allRefs = this.props.allRefs;
+		// const allRefs = this.props.allRefs;
 		// const awards = bake()[3]
 		// console.log(this.props.innerRef)
 		return (
@@ -21,42 +22,24 @@ export default class Sidebar extends Component {
 					<div id="sidebar">
 						<img src={avatar} alt="avatar" />
 
-						<h1
-							className="nav"
-							onClick={() => this.scroller(allRefs()[0])}
-						>
+						<Link smooth to="#aboutme" className="nav">
 							ABOUT
-						</h1>
-						<h1
-							className="nav"
-							onClick={() => this.scroller(allRefs()[1])}
-						>
+						</Link>
+						<Link smooth to="#experience" className="nav">
 							EXPERIENCE
-						</h1>
-						<h1
-							className="nav"
-							onClick={() => this.scroller(allRefs()[2])}
-						>
+						</Link>
+						<Link smooth to="#education" className="nav">
 							EDUCATION
-						</h1>
-						<h1
-							className="nav"
-							onClick={() => this.scroller(allRefs()[3])}
-						>
+						</Link>
+						<Link smooth to="#skills" className="nav">
 							SKILLS
-						</h1>
-						<h1
-							className="nav"
-							onClick={() => this.scroller(allRefs()[4])}
-						>
+						</Link>
+						<Link smooth to="#interests" className="nav">
 							INTERESTS
-						</h1>
-						<h1
-							className="nav"
-							onClick={() => this.scroller(allRefs()[5])}
-						>
+						</Link>
+						<Link smooth to="#awards" className="nav">
 							AWARDS
-						</h1>
+						</Link>
 					</div>
 				</div>
 			</>
