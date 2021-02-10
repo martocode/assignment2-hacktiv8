@@ -7,6 +7,11 @@
 	height: 24px;
 }
 
+.nav:hover {
+	color: white;
+	text-decoration: none;
+}
+
 .checkicon > * {
 	fill: green;
 }
@@ -44,6 +49,7 @@
 
 .pages .page > * {
 	margin-left: 3vh !important;
+	margin-right: unset !important;
 }
 
 .main {
@@ -180,7 +186,7 @@ ul *,
 	display: flex;
 	justify-content: space-between;
 	height: 3.5vh;
-	padding-bottom: 8vh;
+	padding-bottom: 5.7vh;
 }
 
 .description {
