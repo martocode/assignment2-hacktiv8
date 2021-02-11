@@ -22,7 +22,6 @@ class Pages extends Component {
 			"interests",
 			"awards",
 		];
-		let Test = this.props.location.hash;
 		console.log(this.props._id, "asd");
 	}
 	// console.log(AboutMe, Experience.current, 'ff')
@@ -31,30 +30,16 @@ class Pages extends Component {
 		const hasAnchor = currentWin.includes("#");
 		if (hasAnchor) {
 			const goTo = document.querySelector(currentWin);
+			console.log(goTo, "www");
 			if (goTo) {
-				goTo.scrollIntoView({ behavior: "instant" });
+				goTo.scrollIntoView({ behavior: "smooth" }); // Doesn't work with instant
 			}
 		}
 		// this.awards.current.scrollIntoView({ behavior: "auto" });
 	};
 
-	allRefs = () => {
-		return [
-			this.aboutMe,
-			this.experience,
-			this.education,
-			this.skills,
-			this.interests,
-			this.awards,
-		]; // it will execute when child component will invoke it
-	};
-
 	componentDidMount() {
-<<<<<<< HEAD
 		//Got Problem
-=======
-		// useEffect(scroll, [])
->>>>>>> master
 		if (this.scrollTo) {
 			this.scrollTo();
 		}
