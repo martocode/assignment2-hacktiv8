@@ -50,7 +50,11 @@ class Pages extends Component {
 	};
 
 	componentDidMount() {
+<<<<<<< HEAD
 		//Got Problem
+=======
+		// useEffect(scroll, [])
+>>>>>>> master
 		if (this.scrollTo) {
 			this.scrollTo();
 		}
