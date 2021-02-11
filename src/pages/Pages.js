@@ -1,5 +1,4 @@
 import React, { Component, createRef } from "react";
-import { Route, HashRouter } from "react-router-dom";
 import { Row, Container, Col } from "reactstrap";
 import { HashLink as Link } from "react-router-hash-link";
 import Sidebar from "../Components/Sidebar/Sidebar";
@@ -30,9 +29,12 @@ class Pages extends Component {
 		const hasAnchor = currentWin.includes("#");
 		if (hasAnchor) {
 			const goTo = document.querySelector(currentWin);
-			console.log(goTo, "www");
+			console.log(currentWin, "www");
 			if (goTo) {
-				goTo.scrollIntoView({ behavior: "smooth" }); // Doesn't work with instant
+				setTimeout(
+					() => goTo.scrollIntoView({ behavior: "instant" }), // Doesn't work with instant
+					500
+				);
 			}
 		}
 		// this.awards.current.scrollIntoView({ behavior: "auto" });
