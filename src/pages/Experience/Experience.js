@@ -2,7 +2,7 @@ import React, { createRef, forwardRef } from "react";
 import { Container, Col, Row } from "reactstrap";
 import moment from "moment";
 
-// const getDate = (date) => moment(date).format("MMMM YYYY");
+const getDate = (date) => moment(date).format("MMMM YYYY");
 
 const experiences = [
 	[
@@ -27,24 +27,24 @@ const experiences = [
 
 const Myexperience = () =>
 	experiences.map((value, key) => (
-		<Row key={key} className="exp">
-			<Col className="upper-title">
-				<Row>
+		<Container key={key} className="exp">
+			<Row className="upper-title">
+				<Col>
 					<h1 className="name">{value[0]}</h1>
-				</Row>
-				<Row>
+				</Col>
+				<Col xs="2">
 					<h1 className="date">
-						{/* <getDate date="August 2018" /> */}
+						{getDate("August 2018")}
 						{/* {getDate("August 2018")} */}
 						{/* {moment(value[1]).format("MMMM YYYY")} */}
 					</h1>
-				</Row>
-			</Col>
-			<Col>
+				</Col>
+			</Row>
+			<Container>
 				<Row className="loc">{value[2]}</Row>
 				<Row className="job">{value[3]}</Row>
-			</Col>
-		</Row>
+			</Container>
+		</Container>
 	));
 
 // export default
