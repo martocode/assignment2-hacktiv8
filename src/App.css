@@ -2,6 +2,41 @@
 	text-align: center;
 }
 
+.loading {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	top: calc(50% - 4em);
+	left: calc(50% - 4em);
+	top: calc(50% - 4em);
+	left: calc(50% - 4em);
+	width: 6em;
+	height: 6em;
+	border: 1.1em solid rgba(0, 0, 0, 0.2);
+	border-left: 1.1em solid #000000;
+	border-radius: 50%;
+	/* height: 100vh; */
+	justify-content: center;
+	animation: load8 1.1s infinite linear;
+}
+
+@keyframes load8 {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.row {
+	margin-right: unset;
+}
+
+.nav.active {
+	color: white;
+}
+
 .checkicon {
 	width: 24px;
 	height: 24px;
@@ -16,11 +51,11 @@
 	fill: green;
 }
 
-.description {
+.description * {
 	text-indent: 3%;
 }
 
-#education .description {
+#education.page .description * {
 	transform: scaleY(1.5);
 	font-size: 27px;
 }
@@ -31,7 +66,7 @@
 	transform: scaleY(1.3);
 }
 
-.page:not(#experience) {
+.page:not(#experience.page) {
 	height: 100vh;
 	display: flex;
 	/* place-content: center;
@@ -47,9 +82,15 @@
 	justify-content: center;
 }
 
-.pages .page > * {
-	margin-left: 3vh !important;
-	margin-right: unset !important;
+.page > * {
+	padding-left: 10vh;
+	padding-right: 8vh;
+	margin-right: unset;
+}
+
+.title h1 {
+	/* margin-left: unset !important; */
+	margin-bottom: 5vh;
 }
 
 .main {
@@ -59,6 +100,7 @@
 
 .outer-sidebar {
 	width: 150vh;
+	height: 3974px;
 	display: flex;
 	place-content: space-evenly;
 	background: #bd5d38;
@@ -70,7 +112,12 @@
 	color: #ffffff7a;
 }
 
-#sidebar img {
+.img {
+	position: fixed;
+	top: 25%;
+}
+
+.outer-sidebar img {
 	width: 19vh;
 	left: 38vh;
 	margin-bottom: 10px;
@@ -79,18 +126,18 @@
 	background: white;
 }
 
-#sidebar {
+.sidebar {
 	/* min-height: 100vh; */
 	position: fixed;
 	/* background-color: aqua; */
-	top: 25%;
+	top: 46%;
 	height: 195vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 
-#experience {
+#experience.page {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -99,8 +146,8 @@
 	border-bottom: 1px solid #5e5f61;
 }
 
-#experience .title,
-#education .title {
+#experience.page .title,
+#education.page .title h1 {
 	font-size: 4.8vh;
 	font-weight: 700;
 	transform: scaleY(1.5);
@@ -111,7 +158,7 @@
 	transform: scaleY(1.8);
 }
 
-.date {
+.date h1 {
 	color: red;
 }
 
@@ -128,14 +175,11 @@
 	padding-bottom: 7vh;
 }
 
-.title,
+.title h1,
+h1,
 .bigger-title,
 .bigger-title.orange {
 	font-size: 6vh;
-}
-
-.title {
-	margin-bottom: 5vh;
 }
 
 .bigger-title {
@@ -157,14 +201,14 @@
 	font-size: 2vh;
 }
 
-.description,
+.description *,
 ul *,
 .name,
-.date {
+.date h1:not(.sidebar) {
 	font-size: 2.7vh;
 }
 
-#awards ul {
+#awards.page ul:not(.sidebar) {
 	padding-inline-start: 10vh;
 }
 
@@ -172,7 +216,7 @@ ul *,
 	display: grid;
 }
 
-#skills ul {
+#skills.page ul:not(.sidebar) {
 	columns: 2;
 }
 
@@ -189,7 +233,7 @@ ul *,
 	padding-bottom: 5.7vh;
 }
 
-.description {
+.description * {
 	text-align: left;
 }
 

@@ -1,6 +1,7 @@
-import React, { createRef, forwardRef } from "react";
+import React, { Component, forwardRef } from "react";
+import { Container, Row, Col } from "reactstrap";
 
-export default class AboutMe extends React.Component {
+export default class AboutMe extends Component {
 	/* 	
 		constructor({ ref }) {
 			super()
@@ -10,18 +11,18 @@ export default class AboutMe extends React.Component {
 	render() {
 		return (
 			<>
-				<div id="aboutme" className="page" ref={this.props.innerRef}>
-					<div className="title">
-						<p className="bigger-title">
+				<div id="about" className="page" ref={this.props.innerRef}>
+					<Row className="title">
+						<Col className="bigger-title">
 							LOREM
 							<span className="orange">IPSUM</span>
-						</p>
-						<p className="smaller-title">
+						</Col>
+						<Col xs={11} className="smaller-title">
 							+62-123456789&nbsp;
 							<span className="orange">LOREMIPSUM@GMAIL.COM</span>
-						</p>
-					</div>
-					<h1 className="description">
+						</Col>
+					</Row>
+					<Row className="description">
 						Lorem ipsum dolor sit amet consectetur adipisicing elit.
 						Quibusdam cumque enim eos placeat hic iure esse totam
 						consectetur quidem temporibus, tempore eaque sint
@@ -37,7 +38,7 @@ export default class AboutMe extends React.Component {
 						Molestias quos accusamus sint explicabo quibusdam enim
 						nisi minus! Nisi, repellendus harum? Excepturi, quod
 						ratione.
-					</h1>
+					</Row>
 				</div>
 			</>
 		);

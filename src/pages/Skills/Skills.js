@@ -1,4 +1,5 @@
-import React, { Component, forwardRef } from "react";
+import React, { Component } from "react";
+import { Container, Row, Col } from "reactstrap";
 // import Icon from './checkicon'
 import { ReactComponent as Checkicon } from "../../icon/check-circle-solid.svg";
 
@@ -23,7 +24,7 @@ const Divs = () =>
 export default class Skills extends Component {
 	render() {
 		return (
-			<div id="skills" className="page" ref={this.props.innerRef}>
+			<div id="skills" className="page">
 				<div className="title">SKILLS</div>
 				<div className="smaller-title">
 					PROGRAMMING LANGUAGES & TOOLS

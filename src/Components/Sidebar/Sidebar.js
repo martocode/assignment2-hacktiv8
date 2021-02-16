@@ -2,6 +2,7 @@ import React, { Component, createRef } from "react";
 import { NavHashLink as Link } from "react-router-hash-link";
 import Scrollspy from "react-scrollspy";
 import avatar from "../../icon/user.png";
+import ScrollHighligter from "./HighlightOnScroll";
 
 export default class Sidebar extends Component {
 	constructor(props) {
@@ -35,24 +36,16 @@ export default class Sidebar extends Component {
 		}
 	};
 	activeItem = (div) => {
-		const element = window.location.hash.slice(1);
-		const selected = this.scrolls.current.state.inViewState.findIndex(
-			(e) => e === true
-		);
-		const elSelected = [...document.querySelectorAll(`.page`)].findIndex(
-			(e) => e.id === `${element}`
-		);
-		if (selected !== elSelected) {
-			const nav = document.querySelector(
-				`.nav:nth-child(${elSelected + 1})`
-			);
+		const element = window.location.hash;
+		const navIndx = this.scrolls.current.state.inViewState.indexOf(true);
+		const child = document.querySelector(`${element}.page`);
+		const divs = [...child.parentNode.children];
+		const indx = divs.indexOf(child);
+		if (element !== "" && navIndx !== indx) {
+			const nav = document.querySelector(".sidebar").childNodes[indx];
 			// this.switchPage(div);
 			nav.className = "nav";
-			// console.log(
-			// 	`document.querySelectorAll(`.page`): ${elSelected}`,
-			// 	"||",
-			// 	selected
-			// );
+			// new ScrollHighligter();
 		}
 	};
 
@@ -82,7 +75,7 @@ export default class Sidebar extends Component {
 						className="sidebar"
 						items={this.lists}
 						currentClassName="active"
-						offset={-10}
+						// offset={166}
 						onUpdate={this.activeItem}
 						// onUpdate={(e) => console.log(e)}
 						// activeStyle={{ color: "white" }}

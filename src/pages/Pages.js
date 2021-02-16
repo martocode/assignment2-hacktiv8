@@ -11,7 +11,6 @@ import Awards from "./Awards/Awards";
 function demoAsyncCall() {
 	return new Promise((resolve) => setTimeout(() => resolve(), 2500));
 }
-
 class Pages extends Component {
 	constructor(props) {
 		super(props);
@@ -30,10 +29,33 @@ class Pages extends Component {
 			{ section: "interests", ref: this.interests },
 			{ section: "awards", ref: this.awards },
 		];
-		// console.log(this.interests, "123");
+		// const { x, y, c, v } = this.state;
 	}
-	state = { loading: true, visible: false, x: 0, y: 0, c: 0, v: 0 };
-	// console.log(AboutMe, Experience.current, 'ff')
+	state = { loading: true, visible: false, dev: true, x: 0, y: 0 };
+	handleMouseMove = (event) => {
+		event = event || window.event; // IE-ism
+
+		if (event.pageX == null && event.clientX != null) {
+			event.pageX = event.clientX; //+ scroll - client;
+			event.pageY = event.clientY; //+ scroll - client;
+		}
+
+		// console.log();
+		// Use event.pageX / event.pageY here
+		this.setState({ x: event.pageX, y: event.pageY });
+	};
+
+	devTool = () => {
+		const { x, y, dev } = this.state;
+		if (dev) {
+			return (
+				<div className="dev" style={{ position: "fixed" }}>
+					Client : {x}x {y}y
+				</div>
+			);
+		}
+	};
+
 	scrollTo = () => {
 		let currentWin = this.props.location.hash;
 		const hasAnchor = currentWin.includes("#");
@@ -64,26 +86,19 @@ class Pages extends Component {
 		if (loading) {
 			return <div className="loading"></div>;
 		}
-		const { x, y, c, v } = this.state;
 		return (
 			// This is the div you want to scroll to
 			<>
 				<div
 					className="main"
-					onMouseMove={(e) =>
-						this.setState({
-							x: e.screenX,
-							y: e.screenY,
-							c: e.clientX,
-							v: e.clientY,
-						})
+					onMouseMove={
+						this.handleMouseMove
+						// (event) => {this.setState({ x: event.pageX, y: event.pageY });}
 					}
 				>
 					<Sidebar />
-					<div className="pages">
-						<div className="dev" style={{ position: "fixed" }}>
-							Screen : {x}x {y}y Client : {c}x {v}y
-						</div>
+					<Row className="pages">
+						{this.devTool}
 						<AboutMe ref={this.aboutMe} />
 						<Experience ref={this.experience} />
 						<Education ref={this.education} />
@@ -91,7 +106,7 @@ class Pages extends Component {
 						<Interests ref={this.interests} />
 						<Awards ref={this.awards} />
 						{/* <div>{this.Test}</div> */}
-					</div>
+					</Row>
 				</div>
 			</>
 		);
