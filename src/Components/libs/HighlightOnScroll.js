@@ -6,16 +6,17 @@ export const HighlightOnScroll = () => {
 	let current, key;
 	// console.log(navs);
 	if (pages) {
-		[...pages].forEach((section, k) => {
+		[current, key] = [...pages].map((section, k) => {
 			if (window.pageYOffset >= section.offsetTop) {
-				current = section.id;
-				key = k;
+				return [section.id, k];
 			}
 		});
 		navs.forEach((nav, y) => {
 			if (nav.classList.contains(current) && y === key) {
 				// console.log("navs[key]", navs, "current", current);
+				// new Promise((e) => setTimeout(e(), 1)).then(() =>
 				nav.classList.add("active");
+				// );
 			} else if (y !== key) {
 				nav.classList.remove("active");
 			}

@@ -88,11 +88,7 @@
 	margin-right: unset;
 }
 
-<<<<<<< Updated upstream
-.title h1 {
-=======
 .title {
->>>>>>> Stashed changes
 	/* margin-left: unset !important; */
 	margin-bottom: 5vh;
 }
@@ -151,11 +147,7 @@
 }
 
 #experience.page .title,
-<<<<<<< Updated upstream
-#education.page .title h1 {
-=======
 #education.page .title {
->>>>>>> Stashed changes
 	font-size: 4.8vh;
 	font-weight: 700;
 	transform: scaleY(1.5);
@@ -183,11 +175,7 @@
 	padding-bottom: 7vh;
 }
 
-<<<<<<< Updated upstream
-.title h1,
-=======
 .title,
->>>>>>> Stashed changes
 h1,
 .bigger-title,
 .bigger-title.orange {
