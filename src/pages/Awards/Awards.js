@@ -1,4 +1,4 @@
-import React, { Component, createRef, forwardRef } from "react";
+import React from "react";
 
 const listAwards = [
 	"Google Analytics Certified Developer",
@@ -13,24 +13,18 @@ const listAwards = [
 const Arrawards = () =>
 	listAwards.map((value, key) => <li key={key}>{value}</li>);
 
-export default class Awards extends Component {
-	render() {
-		return (
-			<>
-				<div
-					href="awards"
-					id="awards"
-					className="page"
-					ref={this.props.innerRef}
-				>
-					<h1 className="title">AWARDS & CERTIFICATIONS</h1>
-					<ul>
-						<Arrawards />
-					</ul>
-				</div>
-			</>
-		);
-	}
-}
+// export
+const Awards = () => {
+	return (
+		<>
+			<div id="awards" className="page">
+				<h1 className="title">AWARDS & CERTIFICATIONS</h1>
+				<ul>
+					<Arrawards />
+				</ul>
+			</div>
+		</>
+	);
+};
 
-// export default forwardRef((props, ref) => <Awards innerRef={ref} {...props} />)
+export default Awards;

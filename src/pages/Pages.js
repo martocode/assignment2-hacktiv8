@@ -1,13 +1,16 @@
-import React, { Component, createRef, useState } from "react";
-import { Row, Container, Col } from "reactstrap";
-import Sidebar from "../Components/Sidebar/Sidebar";
+import { useEffect, useState } from "react";
+import { Sidebar } from "../Components/Sidebar/Sidebar";
+// import ScrollHighligter from "../Components/libs/HighlightOnScroll";
+import { scrollTo } from "../Components/libs/LoadupScroll";
+import { loadPage } from "../Components/libs/PageLoading";
 import AboutMe from "./AboutMe/AboutMe";
 import Experience from "./Experience/Experience";
 import Education from "./Education/Education";
-import Skills from "./Skills/Skills";
+import { Skills } from "./Skills/Skills";
 import Interests from "./Interests/Interest";
 import Awards from "./Awards/Awards";
 
+<<<<<<< Updated upstream
 function demoAsyncCall() {
 	return new Promise((resolve) => setTimeout(() => resolve(), 2500));
 }
@@ -66,37 +69,74 @@ class Pages extends Component {
 			if (goTo) {
 				goTo.scrollIntoView({ behavior: "instant" }); // Doesn't work with instant
 			}
+=======
+const Pages = (props) => {
+	const [loading, setEndLoading] = useState(true);
+	const [visible] = useState(false);
+	const [dev] = useState(true);
+	const [pageX, setPageX] = useState(0);
+	const [pageY, setPageY] = useState(0);
+
+	const handleMouseMove = (event) => {
+		event = event || window.event; // IE-ism
+
+		if (event.pageX == null && event.clientX != null) {
+			event.pageX = event.clientX; //+ scroll - client;
+			event.pageY = event.clientY; //+ scroll - client;
+>>>>>>> Stashed changes
+		}
+
+		// console.log();
+		// Use event.pageX / event.pageY here
+		setPageX(event.pageX);
+		setPageY(event.pageY);
+	};
+
+	const devTool = () => {
+		if (dev) {
+			return (
+				<div className="dev" style={{ position: "fixed" }}>
+					Client : {pageX}x {pageY}y
+				</div>
+			);
 		}
 	};
 
-	componentDidMount() {
-		demoAsyncCall()
-			.then(() => {
-				// console.log("pp");
-				this.setState({ loading: false });
-			})
+	useEffect(() => {
+		loadPage()
+			.then(() => setEndLoading(false))
+			.then(() => scrollTo(props));
+	}, [props]);
 
-			.then(() => {
-				setTimeout(this.scrollTo(), 100);
-			});
-	}
-
+<<<<<<< Updated upstream
 	render() {
 		let { loading } = this.state;
 		if (loading) {
 			return <div className="loading"></div>;
 		}
+=======
+	if (loading) {
+		return <div className="loading"></div>;
+	} else {
+>>>>>>> Stashed changes
 		return (
 			// This is the div you want to scroll to
 			<>
 				<div
 					className="main"
+<<<<<<< Updated upstream
 					onMouseMove={
 						this.handleMouseMove
+=======
+					// onScroll={ScrollHighligter()}
+					onMouseMove={
+						handleMouseMove
+>>>>>>> Stashed changes
 						// (event) => {this.setState({ x: event.pageX, y: event.pageY });}
 					}
 				>
 					<Sidebar />
+<<<<<<< Updated upstream
 					<Row className="pages">
 						{this.devTool}
 						<AboutMe ref={this.aboutMe} />
@@ -105,12 +145,22 @@ class Pages extends Component {
 						<Skills ref={this.skills} />
 						<Interests ref={this.interests} />
 						<Awards ref={this.awards} />
+=======
+					<div className="pages">
+						{devTool}
+						<AboutMe />
+						<Experience />
+						<Education />
+						<Skills />
+						<Interests />
+						<Awards />
+>>>>>>> Stashed changes
 						{/* <div>{this.Test}</div> */}
 					</Row>
 				</div>
 			</>
 		);
 	}
-}
+};
 
 export default Pages;
