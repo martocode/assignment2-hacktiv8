@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { Sidebar } from "../Components/Sidebar/Sidebar";
-// import ScrollHighligter from "../Components/libs/HighlightOnScroll";
+import { forwardRef, useEffect, useRef, useState } from "react";
+import Sidebar from "../Components/Sidebar/Sidebar";
+// import { HighlightOnScroll } from "../Components/libs/HighlightOnScroll";
 import { scrollTo } from "../Components/libs/LoadupScroll";
 import { loadPage } from "../Components/libs/PageLoading";
 import AboutMe from "./AboutMe/AboutMe";
@@ -12,45 +12,17 @@ import Awards from "./Awards/Awards";
 
 const Pages = (props) => {
 	const [loading, setEndLoading] = useState(true);
-	const [visible] = useState(false);
-	const [dev] = useState(true);
-	const [pageX, setPageX] = useState(0);
-	const [pageY, setPageY] = useState(0);
-
-	const handleMouseMove = (event) => {
-		event = event || window.event; // IE-ism
-
-		if (event.pageX == null && event.clientX != null) {
-			event.pageX = event.clientX; //+ scroll - client;
-			event.pageY = event.clientY; //+ scroll - client;
-		}
-
-		// console.log();
-		// Use event.pageX / event.pageY here
-		setPageX(event.pageX);
-		setPageY(event.pageY);
-	};
-
-	const devTool = () => {
-		if (dev) {
-			return (
-				<div className="dev" style={{ position: "fixed" }}>
-					Client : {pageX}x {pageY}y
-				</div>
-			);
-		}
-	};
+	const pages = useRef();
+	const [navs, setNavs] = useState();
 
 	useEffect(() => {
 		loadPage()
 			.then(() => setEndLoading(false))
-			.then(() => scrollTo(props))
 			.then(() => {
-				const navs = document.querySelectorAll(".nav");
-				navs.forEach((x) =>
-					x.addEventListener("click", scrollTo(props))
-				);
+				scrollTo(props);
+				console.log(props);
 			});
+		// .then(() => window.addEventListener("scroll", HighlightOnScroll));
 	}, [props]);
 
 	if (loading) {
@@ -61,15 +33,10 @@ const Pages = (props) => {
 			<>
 				<div
 					className="main"
-					// onScroll={ScrollHighligter()}
-					onMouseMove={
-						handleMouseMove
-						// (event) => {this.setState({ x: event.pageX, y: event.pageY });}
-					}
+					// onScroll={HighlightOnScroll()}
 				>
-					<Sidebar />
-					<div className="pages">
-						{devTool}
+					<Sidebar getNavs={(ref) => setNavs(ref)} />
+					<div className="pages" ref={pages}>
 						<AboutMe />
 						<Experience />
 						<Education />
@@ -84,4 +51,5 @@ const Pages = (props) => {
 	}
 };
 
-export default Pages;
+export default forwardRef((props, ref) => <Pages navsRev={ref} {...props} />);
+// export default Pages;

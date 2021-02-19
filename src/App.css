@@ -100,7 +100,7 @@
 
 .outer-sidebar {
 	width: 150vh;
-	height: 3974px;
+	/* height: 3974px; */
 	display: flex;
 	place-content: space-evenly;
 	background: #bd5d38;
@@ -131,7 +131,7 @@
 	position: fixed;
 	/* background-color: aqua; */
 	top: 46%;
-	height: 195vh;
+	/* height: 195vh; */
 	display: flex;
 	flex-direction: column;
 	align-items: center;

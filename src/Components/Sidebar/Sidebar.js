@@ -1,11 +1,23 @@
-import React, { Component, useEffect, useRef, useState } from "react";
+import React, {
+	Component,
+	useEffect,
+	useRef,
+	useState,
+	forwardRef,
+} from "react";
 import { NavHashLink as Link } from "react-router-hash-link";
 import Scrollspy from "react-scrollspy";
 import avatar from "../../icon/avatar.jpg";
+import Pages from "../../pages/Pages";
 import { HighlightOnScroll } from "../libs/HighlightOnScroll";
+import { scrollTo } from "../libs/LoadupScroll";
 
-export const Sidebar = () => {
+const Sidebar = (props) => {
+	const pages = props.pagesRef;
+	const navs = useRef;
 	const scrolls = useRef();
+	// const getNavs = () => navs;
+	// console.log("before", props);
 	// const [loaded, setLoad] = useState(false);
 
 	const lists = [
@@ -17,14 +29,33 @@ export const Sidebar = () => {
 		"awards",
 	];
 
-	useEffect(() => {
-		window.addEventListener("scroll", HighlightOnScroll);
-	}, []);
+	useEffect(
+		() =>
+			new Promise((e) => e()).then((navs) => {
+				/* window.addEventListener(
+					"scroll",
+					(pages, navs, event) =>
+						// <HighlightOnScroll pagesRef={pages} navsRef={navs} />
+						HighlightOnScroll(pages, navs, event)
+				 */
+				// <Pages navsRef={navs} />;
+				// props.getNavs(navs);
+				console.log(props);
+				// );
+			})[
+				// .then(HighlightOnScroll),
+				(pages, navs, props)
+			]
+	);
 
 	return (
 		<>
 			{/* <button onClick={console.log(awards.current, 'wa')}>click</button> */}
-			<div className="outer-sidebar">
+			<div
+				className="outer-sidebar"
+				ref={navs}
+				// onLoad={() => props.getNavs(navs)}
+			>
 				<div className="img">
 					<img src={avatar} alt="avatar" />
 				</div>
@@ -37,22 +68,52 @@ export const Sidebar = () => {
 					onUpdate={activeItem}
 				> */}
 				<div className="sidebar">
-					<Link smooth to="#about" className="nav about">
+					<Link
+						smooth
+						to="#about"
+						className="nav about"
+						// onClick={scrollTo}
+					>
 						ABOUT
 					</Link>
-					<Link smooth to="#experience" className="nav experience">
+					<Link
+						smooth
+						to="#experience"
+						className="nav experience"
+						// onClick={scrollTo}
+					>
 						EXPERIENCE
 					</Link>
-					<Link smooth to="#education" className="nav education">
+					<Link
+						smooth
+						to="#education"
+						className="nav education"
+						// onClick={scrollTo}
+					>
 						EDUCATION
 					</Link>
-					<Link smooth to="#skills" className="nav skills">
+					<Link
+						smooth
+						to="#skills"
+						className="nav skills"
+						// onClick={scrollTo}
+					>
 						SKILLS
 					</Link>
-					<Link smooth to="#interests" className="nav interests">
+					<Link
+						smooth
+						to="#interests"
+						className="nav interests"
+						// onClick={scrollTo}
+					>
 						INTERESTS
 					</Link>
-					<Link smooth to="#awards" className="nav awards">
+					<Link
+						smooth
+						to="#awards"
+						className="nav awards"
+						// onClick={scrollTo}
+					>
 						AWARDS
 					</Link>
 					{/* </Scrollspy> */}
@@ -62,4 +123,5 @@ export const Sidebar = () => {
 	);
 };
 
-// export default forwardRef((props, ref) => <Sidebar innerRef={ref} {...props} />)
+// export default forwardRef((props, ref) => <Sidebar navsRef={ref} {...props} />);
+export default Sidebar;

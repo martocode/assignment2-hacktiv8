@@ -2,12 +2,11 @@ export const scrollTo = (props) => {
 	// console.log("props", props);
 	let currentWin = props.location.hash;
 	const hasAnchor = currentWin.includes("#");
-	// const offset = window.pageYOffset;
-	if (hasAnchor) {
-		const goTo = document.querySelector(currentWin);
+	const goTo = hasAnchor && document.querySelector(currentWin);
+	if (goTo) {
+		console.log(goTo);
+		goTo.scrollIntoView({ behavior: "instant" }); // Doesn't work with instant
+		// const offset = window.pageYOffset;
 		// console.log(currentWin, "www");
-		if (goTo) {
-			goTo.scrollIntoView({ behavior: "instant" }); // Doesn't work with instant
-		}
 	}
 };
