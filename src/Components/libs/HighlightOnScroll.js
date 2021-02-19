@@ -1,9 +1,12 @@
 import { forwardRef } from "react";
 
 export const HighlightOnScroll = (pagesRef, navsRef) => {
-	const pages = pagesRef;
-	const navs = navsRef;
-	console.log(`[pages ${pages}]`, `[navs ${navs}]`, "HighlightOnScroll");
+	let pages, navs;
+	if (!pagesRef && !navsRef) {
+		pages = [...pagesRef.current.children];
+		navs = [...navsRef.current.children];
+	}
+	// console.log("pages", pagesRef, "navs", navsRef, "HighlightOnScroll");
 	// useEffect(() => {
 	// const pages = document.querySelectorAll(".page");
 	// const navs = document.querySelectorAll(".nav");
@@ -11,12 +14,14 @@ export const HighlightOnScroll = (pagesRef, navsRef) => {
 	let key;
 	// console.log(navs);
 	// IntersectionObserver();
-	/* 	const current =
+	/* const current =
 		pages &&
 		[...pages]
 			.filter((section) => window.pageYOffset >= section.offsetTop)
-			.slice(-1);
-	navs.forEach((nav, y) => {
+			.slice(-1); */
+	// if (current !== undefined) console.log(current);
+	// if(navs[])
+	/* navs.forEach((nav, y) => {
 		const active = (nav.classList.contains(current) && y === key) || nav;
 		// console.log(active);
 		active.classList.add("active");
@@ -29,9 +34,9 @@ export const HighlightOnScroll = (pagesRef, navsRef) => {
 			if (window.pageYOffset >= section.offsetTop) {
 				const current = section.id;
 				key = k;
+				console.log("navs[key]", key, "current", current);
 				navs.forEach((nav, y) => {
 					if (nav.classList.contains(current) && y === key) {
-						// console.log("navs[key]", key, "current", current);
 						// new Promise((e) => setTimeout(e(), 1)).then(() =>
 						nav.classList.add("active");
 						// );

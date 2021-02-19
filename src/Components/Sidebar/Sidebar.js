@@ -12,13 +12,9 @@ import Pages from "../../pages/Pages";
 import { HighlightOnScroll } from "../libs/HighlightOnScroll";
 import { scrollTo } from "../libs/LoadupScroll";
 
-const Sidebar = (props) => {
-	const pages = props.pagesRef;
-	const navs = useRef;
+const Sidebar = forwardRef((props, ref) => {
+	const navs = ref;
 	const scrolls = useRef();
-	// const getNavs = () => navs;
-	// console.log("before", props);
-	// const [loaded, setLoad] = useState(false);
 
 	const lists = [
 		"about",
@@ -29,32 +25,13 @@ const Sidebar = (props) => {
 		"awards",
 	];
 
-	useEffect(
-		() =>
-			new Promise((e) => e()).then((navs) => {
-				/* window.addEventListener(
-					"scroll",
-					(pages, navs, event) =>
-						// <HighlightOnScroll pagesRef={pages} navsRef={navs} />
-						HighlightOnScroll(pages, navs, event)
-				 */
-				// <Pages navsRef={navs} />;
-				// props.getNavs(navs);
-				console.log(props);
-				// );
-			})[
-				// .then(HighlightOnScroll),
-				(pages, navs, props)
-			]
-	);
-
 	return (
 		<>
 			{/* <button onClick={console.log(awards.current, 'wa')}>click</button> */}
 			<div
 				className="outer-sidebar"
 				ref={navs}
-				// onLoad={() => props.getNavs(navs)}
+				// onLoad={() => props.getNavs()}
 			>
 				<div className="img">
 					<img src={avatar} alt="avatar" />
@@ -121,7 +98,7 @@ const Sidebar = (props) => {
 			</div>
 		</>
 	);
-};
+});
 
 // export default forwardRef((props, ref) => <Sidebar navsRef={ref} {...props} />);
 export default Sidebar;
